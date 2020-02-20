@@ -43,6 +43,10 @@ set _file=%_root%LIESMICH.md
 set _dest=%_target%\
 call :copyFile
 
+set _file=%_root%\oxt\ProofYw7-L-%_release%.oxt
+set _dest=%_target%\program\
+call :copyFile
+
 set _file=%_root%src\ProofYw7.py
 set _dest=%_target%\setup\program\
 call :copyFile

@@ -71,6 +71,10 @@ echo Deleting program components in %_user%\Scripts\python ...
 
 del /q "%_user%\Scripts\python\ProofYw7.py"
 
+echo Removing LibreOffice extension ...
+
+"%_writer%\program\unopkg" remove -f ProofYw7-L-%_release%.oxt
+
 echo Deleting proof.bat ...
 
 del proof.bat

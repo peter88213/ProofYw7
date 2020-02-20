@@ -69,16 +69,15 @@ goto settings_done
 
 :settings_done
 
-echo Removing old OpenOffice extension ...
-
-"%_writer%\program\unopkg" remove -f ProofYw7.OXT >nul
-
-
 echo Copying program components to %_user%\Scripts\python ...
 
 if not exist "%_user%\Scripts" mkdir "%_user%\Scripts"
 if not exist "%_user%\Scripts\python" mkdir "%_user%\Scripts\python"
 copy /y program\*.py "%_user%\Scripts\python"
+
+echo Installing LibreOffice extension ...
+
+"%_writer%\program\unopkg" add -f program\ProofYw7-L-%_release%.oxt
 
 echo Creating "proof.bat" ...
 
