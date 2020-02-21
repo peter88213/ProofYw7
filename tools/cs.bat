@@ -6,7 +6,7 @@ REM See: https://github.com/peter88213/ProofYw7
 REM License: The MIT License (https://opensource.org/licenses/mit-license.php)
 REM Copyright: (c) 2020, Peter Triesberger
 
-set _release=0.1.0
+set _release=0.3.0
 
 set _project=ProofYw7
 
@@ -43,8 +43,8 @@ set _file=%_root%LIESMICH.md
 set _dest=%_target%\
 call :copyFile
 
-set _file=%_root%\oxt\ProofYw7-L-%_release%.oxt
-set _dest=%_target%\program\
+set _file=%_root%oxt\ProofYw7-L-%_release%.oxt
+set _dest=%_target%\setup\program\
 call :copyFile
 
 set _file=%_root%src\ProofYw7.py

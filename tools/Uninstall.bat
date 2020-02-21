@@ -15,7 +15,7 @@ REM Postconditions:
 REM * Previously auto-installed items of ProofYw7 are removed.
 REM * "proof.bat" is removed from all yWriter project directories within [userprofile]\Documents.
 
-set _release=0.1.0
+set _release=0.3.0
 
 pushd setup
 

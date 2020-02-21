@@ -16,7 +16,7 @@ REM * The ProofYw7 Python scripts are installed in the LibreOffice user profile.
 REM * The program starter "proof.bat" is generated in the setup directory.
 REM * "proof.bat" is copied to all yWriter project directories within [userprofile]\Documents.
 
-set _release=0.1.0
+set _release=0.3.0
 
 pushd setup
 
