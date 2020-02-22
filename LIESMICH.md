@@ -26,7 +26,8 @@ Die ProofYw7 Software kommt als ZIP-Archiv `ProofYw7_Versionsnummer.zip`.
 
 3. Öffnen Sie den Ordner `ProofYw7_<Versionsnummer>` und führen Sie `Install.bat` aus (Doppelklick). Dadurch werden alle Programmdateien an den richtigen Ort kopiert.
 
-4. __Optional:__ ffnen Sie den Ordner `ProofYw7_<Versionsnummer>\fonts` und entpacken Sie das Archiv `CourierPrime.zip`. Installieren Sie die `.ttf`-Dateien (Rechtsklick -> Installieren).
+4. __Optional:__  Laden Sie die Schriftart [Courier Prime](https://quoteunquoteapps.com/courierprime) herunter und installieren sie sie.
+
 
 
 ## ProofYw7 benutzen

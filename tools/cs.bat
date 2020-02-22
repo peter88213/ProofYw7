@@ -23,7 +23,6 @@ if exist %_target% rd /s /q %_target%
 mkdir %_target%
 mkdir %_target%\setup
 mkdir %_target%\setup\program
-mkdir %_target%\fonts
 
 rem --------------------------------------------------------
 rem Generate release info
@@ -65,10 +64,6 @@ call :copyFile
 
 set _file=%_root%tools\Uninstall.bat
 set _dest=%_target%\
-call :copyFile
-
-set _file=%_root%fonts\CourierPrime.zip
-set _dest=%_target%\fonts\
 call :copyFile
 
 exit /b
