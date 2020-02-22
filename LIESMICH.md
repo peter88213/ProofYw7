@@ -1,6 +1,6 @@
 # ProofYw7 (yWriter 7-Szenen mit LibreOffice korrekturlesen)
 
-![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw/master/docs/Screenshots/screenshot1d.png)
+![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw7/master/docs/Screenshots/screenshot1d.png)
 
 ## Voraussetzungen
 
@@ -40,11 +40,11 @@ Die ProofYw7 Software kommt als ZIP-Archiv `ProofYw7_Versionsnummer.zip`.
 
 3. Um die korrekturgelesenen Szenen in das yWriter-Projekt zurückzuschreiben, klicken Sie den Button mit dem yWriter-Logo, oder wählen Sie den Menüeintrag  _Extras > Add-ons > ProofYw7 > Korrigierte Szenen nach yWriter zurückschreiben_.
 
-![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw/master/docs/Screenshots/screenshot2d.png)
+![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw7/master/docs/Screenshots/screenshot2d.png)
 
 Wenn alles geklappt hat, öffnet sich ein Fenster mit einer Erfolgsmeldung.
 
-![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw/master/docs/Screenshots/screenshot3d.png)
+![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw7/master/docs/Screenshots/screenshot3d.png)
 
 
 

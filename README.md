@@ -1,6 +1,6 @@
 # ProofYw7 - Proofread yWriter 7 scenes with LibreOffice
 
-![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw/master/docs/Screenshots/screenshot1.png)
+![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw7/master/docs/Screenshots/screenshot1.png)
 
 For more information see [Wiki (english)](https://github.com/peter88213/ProofYw7/wiki)
 
@@ -40,11 +40,11 @@ The ProofYw7 Software comes as a zipfile `ProofYw7_<version number>.zip`.
 
 4. In order to write back the proofread scenes to the yWriter project, klick the toolbar button with the yWriter logo, or or select the menu item _Tools > Add-ons > ProofYw7 > Write proofed scenes back to yWriter_.
 
-![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw/master/docs/Screenshots/screenshot2.png)
+![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw7/master/docs/Screenshots/screenshot2.png)
 
 If everything went well, a window will open with a success message.
 
-![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw/master/docs/Screenshots/screenshot3.png)
+![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw7/master/docs/Screenshots/screenshot3.png)
 
 ## How to uninstall
 
