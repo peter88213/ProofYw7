@@ -1,5 +1,7 @@
 # ProofYw7 - Proofread yWriter 7 scenes with LibreOffice
 
+Export an yWriter 7 project to an OpenDocument file with chapter and scene markers. Write back the proofread scenes to the yWriter 7 project file.
+
 ![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw7/master/docs/Screenshots/screenshot1.png)
 
 For more information see [Wiki (english)](https://github.com/peter88213/ProofYw7/wiki)
