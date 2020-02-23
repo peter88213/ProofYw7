@@ -36,7 +36,7 @@ The ProofYw7 Software comes as a zipfile `ProofYw7_<version number>.zip`.
 
 1. Write your novel in yWriter 7. Make sure, the `<your yWriter project>.yw` folder contains a file named `proof.bat`. If not, copy it from `ProofYw7_<version number>\setup>` folder.
 
-2. Close yWriter, move into the `<your yWriter project>.yw` folder, and run `proof.bat` (double click). 
+2. Backup entire project and close yWriter. Move into the `<your yWriter project>.yw` folder, and run `proof.bat` (double click). 
 
 3. If everything goes well, you will see an OpenDocument file named `<your yWriter project>_proof.odt`. Open it (double click) for proof reading. The proof reading document contains Chapter `[ChID:x]` and scene `[ScID:y]` markers according to yWriter 5 standard.  __Do not touch lines containing the markers__  if you want to be able to reimport the document into yWriter. 
 
