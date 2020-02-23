@@ -1,6 +1,6 @@
 """ Python unit tests for the yW2OO project.
 
-Test suite for yw2oo.py (does conversion) and sceti.py (does annotation).
+Test suite for proofyw7.py (does conversion) and sceti.py (does annotation).
 
 For further information see https://github.com/peter88213/yW2OO
 Published under the MIT License (https://opensource.org/licenses/mit-license.php)
@@ -24,12 +24,22 @@ TEST_EXEC_PATH = 'yw7/'
 # To be placed in TEST_DATA_PATH:
 
 # Test data
-TEST_FILE = 'yWriter Sample Project.yw7'
-EXPORT_FILE = 'yWriter Sample Project.odt'
+YW7_TEST = TEST_EXEC_PATH + 'yWriter Sample Project.yw7'
+ODT_TEST = TEST_EXEC_PATH + 'yWriter Sample Project_proof.odt'
+HTML_TEST = TEST_EXEC_PATH + 'yWriter Sample Project_proof.html'
 
 DOCUMENT_CONTENT = 'content.xml'
 DOCUMENT_META = 'meta.xml'
 DOCUMENT_STYLES = 'styles.xml'
+
+YW7_NORMAL = TEST_DATA_PATH + 'normal.yw7'
+YW7_PROOFED = TEST_DATA_PATH + 'proofed.yw7'
+
+DOC_NORMAL = TEST_DATA_PATH + 'normal.odt'
+DOC_PROOFED = TEST_DATA_PATH + 'proofed.html'
+
+with open(YW7_NORMAL, 'r') as f:
+    TOTAL_SCENES = f.read().count('<SCENE>')
 
 
 def read_file(inputFile):
@@ -54,28 +64,24 @@ class NormalOperation(unittest.TestCase):
     """Test case: Normal operation."""
 
     def setUp(self):
-        os.chdir(TEST_PATH)
+        copy_file(YW7_NORMAL, YW7_TEST)
+        copy_file(DOC_PROOFED, HTML_TEST)
         try:
-            os.remove(TEST_EXEC_PATH + TEST_FILE)
-        except:
-            pass
-        # Place the correct html Export file.
-        copy_file(TEST_DATA_PATH + TEST_FILE,
-                  TEST_EXEC_PATH + TEST_FILE)
-        try:
-            os.remove(TEST_EXEC_PATH + EXPORT_FILE)
+            os.remove(ODT_TEST)
         except:
             pass
 
-    def test_yw2oo(self):
-        """ Test yw2oo. """
-        os.chdir(TEST_EXEC_PATH)
+    def test_data(self):
+        """Verify test data integrity. """
+        self.assertNotEqual(
+            read_file(YW7_NORMAL),
+            read_file(YW7_PROOFED))
 
-        yw2oo.main()
-        # self.assertEqual(, 'SUCCESS: "' + EXPORT_FILE + '" saved.')
-        os.chdir(TEST_PATH)
+    def test_yw7_to_odt(self):
+        self.assertEqual(proofyw7.run(YW7_TEST),
+                         'SUCCESS: "' + ODT_TEST + '" saved.')
 
-        with zipfile.ZipFile(TEST_EXEC_PATH + EXPORT_FILE, 'r') as myzip:
+        with zipfile.ZipFile(ODT_TEST, 'r') as myzip:
             myzip.extract(DOCUMENT_CONTENT, TEST_EXEC_PATH)
             myzip.extract(DOCUMENT_STYLES, TEST_EXEC_PATH)
 
@@ -84,23 +90,27 @@ class NormalOperation(unittest.TestCase):
         self.assertEqual(read_file(TEST_EXEC_PATH + DOCUMENT_STYLES),
                          read_file(TEST_DATA_PATH + DOCUMENT_STYLES))
 
+    def test_html_to_yw7(self):
+        self.assertEqual(proofyw7.run(HTML_TEST),
+                         'SUCCESS: ' + str(TOTAL_SCENES) + ' Scenes written to "' + YW7_TEST + '".')
+
+        self.assertEqual(read_file(YW7_TEST), read_file(YW7_PROOFED))
+
 
 class NoProjectFile(unittest.TestCase):
     """Test case: yWriter project file is not present."""
 
     def setUp(self):
-        os.chdir(TEST_PATH)
+        copy_file(DOC_PROOFED, HTML_TEST)
         # Make sure there's no yWriter project file present.
         try:
-            os.remove(TEST_EXEC_PATH + TEST_FILE)
+            os.remove(YW7_TEST)
         except:
             pass
 
     def test_all(self):
-        """ Test both yw2oo and sceti. """
-        os.chdir(TEST_EXEC_PATH)
-        self.assertEqual(proofyw7.main(), 'ERROR: No yWriter 7 project found.')
-        os.chdir(TEST_PATH)
+        self.assertEqual(proofyw7.run(HTML_TEST),
+                         'ERROR: Project "' + YW7_TEST + '" not found.')
 
 
 def main():

@@ -1413,6 +1413,8 @@ class OdtTemplate():
             return 'ERROR: Cannot write "meta.xml".'
 
         return 'SUCCESS: ODT structure generated.'
+
+
 from abc import abstractmethod
 
 
@@ -1566,8 +1568,6 @@ def to_odt(text):
         pass
 
     return text
-
-
 
 
 class OdtFile(Novel, OdtTemplate):
@@ -1829,8 +1829,8 @@ class OdtProof(OdtFile):
 
         return 'SUCCESS: Content written to "content.xml"'
 
-from html.parser import HTMLParser
 
+from html.parser import HTMLParser
 
 
 class Chapter():
@@ -1860,7 +1860,6 @@ class Chapter():
         # list of str
         # The chapter's scene IDs. The order of its elements
         # corresponds to the chapter's order of the scenes.
-
 
 
 class Scene():
@@ -1926,7 +1925,6 @@ class Scene():
         text = text.replace('\n', '')
         text = text.replace('\r', '')
         self.letterCount = len(text)
-
 
 
 HTML_SCENE_DIVIDER = '* * *'
@@ -2034,7 +2032,6 @@ def read_html_file(filePath):
             return ('ERROR: "' + filePath + '" not found.', None)
 
     return ('SUCCESS', text)
-
 
 
 HTML_HEADING_MARKERS = ("h2", "h1")
@@ -2227,8 +2224,8 @@ class HtmlProof(Novel, HTMLParser):
 
         return 'SUCCESS: "' + self._filePath + '" saved.'
 
-import xml.etree.ElementTree as ET
 
+import xml.etree.ElementTree as ET
 
 
 def indent(elem, level=0):
@@ -2289,8 +2286,6 @@ def cdata(filePath, cdataTags: list):
         return 'ERROR: Can not write"' + filePath + '".'
 
     return 'SUCCESS: "' + filePath + '" written.'
-
-
 
 
 class Yw7File(Novel):
@@ -2812,7 +2807,7 @@ def delete_tempfile(filePath):
 
 
 def run(sourcePath):
-    sourcePath = sourcePath.lower().replace('file:///', '').replace('%20', ' ')
+    sourcePath = sourcePath.replace('file:///', '').replace('%20', ' ')
     converter = Yw7Cnv()
 
     # The conversion's direction depends on the sourcePath argument.
@@ -2845,7 +2840,7 @@ if __name__ == '__main__':
 
         for file in files:
 
-            if '.yw7' in file:
+            if file.endswith('.yw7'):
                 sourcePath = file
                 break
 
