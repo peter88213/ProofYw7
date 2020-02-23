@@ -1,6 +1,6 @@
 """ Python unit tests for the yW2OO project.
 
-Test suite for proofyw7.py (does conversion) and sceti.py (does annotation).
+Test suite for proofyw7.py.
 
 For further information see https://github.com/peter88213/yW2OO
 Published under the MIT License (https://opensource.org/licenses/mit-license.php)
@@ -14,7 +14,7 @@ import proofyw7
 
 # Test environment
 
-# The paths are relative to the "src" directory,
+# The paths are relative to the "test" directory,
 # where this script is placed and executed
 
 TEST_PATH = os.getcwd()
@@ -29,7 +29,6 @@ ODT_TEST = TEST_EXEC_PATH + 'yWriter Sample Project_proof.odt'
 HTML_TEST = TEST_EXEC_PATH + 'yWriter Sample Project_proof.html'
 
 DOCUMENT_CONTENT = 'content.xml'
-DOCUMENT_META = 'meta.xml'
 DOCUMENT_STYLES = 'styles.xml'
 
 YW7_NORMAL = TEST_DATA_PATH + 'normal.yw7'
@@ -58,6 +57,29 @@ def copy_file(inputFile, outputFile):
     with open(outputFile, 'wb') as f:
         f.write(myData)
     return()
+
+
+def remove_all_testfiles():
+    try:
+        os.remove(YW7_TEST)
+    except:
+        pass
+    try:
+        os.remove(ODT_TEST)
+    except:
+        pass
+    try:
+        os.remove(HTML_TEST)
+    except:
+        pass
+    try:
+        os.remove(TEST_EXEC_PATH + DOCUMENT_STYLES)
+    except:
+        pass
+    try:
+        os.remove(TEST_EXEC_PATH + DOCUMENT_CONTENT)
+    except:
+        pass
 
 
 class NormalOperation(unittest.TestCase):
@@ -96,6 +118,9 @@ class NormalOperation(unittest.TestCase):
 
         self.assertEqual(read_file(YW7_TEST), read_file(YW7_PROOFED))
 
+    def tearDown(self):
+        remove_all_testfiles()
+
 
 class NoProjectFile(unittest.TestCase):
     """Test case: yWriter project file is not present."""
@@ -111,6 +136,9 @@ class NoProjectFile(unittest.TestCase):
     def test_all(self):
         self.assertEqual(proofyw7.run(HTML_TEST),
                          'ERROR: Project "' + YW7_TEST + '" not found.')
+
+    def tearDown(self):
+        remove_all_testfiles()
 
 
 def main():
