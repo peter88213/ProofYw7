@@ -1,19 +1,16 @@
-"""PyWriter v1.3 - Import and export ywriter7 scenes for proofing. 
+"""ProofYw7 - Import and export ywriter7 scenes for proofing. 
 
 Proof reading file format: ODT (OASIS Open Document format) 
 with visible chapter and scene tags.
 Proofed file format: HTML with visible chapter and scene tags.
 
 Copyright (c) 2020 Peter Triesberger.
-For further information see https://github.com/peter88213/PyWriter
+For further information see https://github.com/peter88213/ProofYw7
 Published under the MIT License (https://opensource.org/licenses/mit-license.php)
 """
 import sys
 import os
-
-
 import zipfile
-
 import re
 import locale
 from shutil import rmtree
@@ -1423,6 +1420,8 @@ class OdtTemplate():
             return 'ERROR: Cannot write "meta.xml".'
 
         return 'SUCCESS: ODT structure generated.'
+
+
 from abc import abstractmethod
 
 
@@ -1578,9 +1577,7 @@ def to_odt(text):
     return text
 
 
-
-
-class OdtFile(Novel, OdtTemplate):
+class OdtFileWriter(Novel, OdtTemplate):
     """OpenDocument xml project file representation."""
     _FILE_EXTENSION = '.odt'
 
@@ -1715,7 +1712,7 @@ class OdtFile(Novel, OdtTemplate):
         return 'SUCCESS: "' + self._filePath + '" saved.'
 
 
-class OdtProof(OdtFile):
+class OdtProofWriter(OdtFileWriter):
     """OpenDocument xml proof reading file representation."""
 
     _SCENE_DIVIDER = '* * *'
@@ -1835,8 +1832,8 @@ class OdtProof(OdtFile):
 
         return 'SUCCESS: Content written to "content.xml"'
 
-from html.parser import HTMLParser
 
+from html.parser import HTMLParser
 
 
 class Chapter():
@@ -1866,7 +1863,6 @@ class Chapter():
         # list of str
         # The chapter's scene IDs. The order of its elements
         # corresponds to the chapter's order of the scenes.
-
 
 
 class Scene():
@@ -1934,31 +1930,6 @@ class Scene():
         self.letterCount = len(text)
 
 
-
-HTML_SCENE_DIVIDER = '* * *'
-# To be placed between scene ending and beginning tags.
-
-# Make the generated html file look good in a web browser:
-
-STYLESHEET = '<style type="text/css">\n' + \
-    'h1, h2, h3, h4, p {font: 1em monospace; margin: 3em; line-height: 1.5em}\n' + \
-    'h1, h2, h3, h4 {text-align: center}\n' +\
-    'h1 {letter-spacing: 0.2em; font-style: italic}' + \
-    'h1, h2 {font-weight: bold}\n' + \
-    'h3 {font-style: italic}\n' + \
-    'p.textbody {margin-top:0; margin-bottom:0}\n' + \
-    'p.firstlineindent {margin-top:0; margin-bottom:0; text-indent: 1em}\n' + \
-    'strong {font-weight:normal; text-transform: uppercase}\n' + \
-    '</style>\n'
-
-HTML_HEADER = '<html>\n' + '<head>\n' + \
-    '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n' + STYLESHEET + \
-    '<title>$bookTitle$</title>\n' + \
-    '</head>\n' + '<body>\n'
-
-HTML_FOOTER = '\n</body>\n</html>\n'
-
-
 def to_yw7(text):
     """Convert html tags to yw7 raw markup. Return a yw7 markup string."""
     text = text.replace('<i>', '[i]')
@@ -1987,22 +1958,6 @@ def to_yw7(text):
 
     while '  ' in text:
         text = text.replace('  ', ' ')
-
-    return text
-
-
-def to_html(text):
-    """Convert yw7 raw markup to html. Return a html string."""
-    try:
-        text = text.replace('\n', '</p>\n<p class="firstlineindent">')
-        text = text.replace('[i]', '<em>')
-        text = text.replace('[/i]', '</em>')
-        text = text.replace('[b]', '<strong>')
-        text = text.replace('[/b]', '</strong>')
-        text = re.sub('\<p(.*?)\> *\<\/p\>', '<p\g<1>><br>\n</p>', text)
-
-    except:
-        pass
 
     return text
 
@@ -2042,14 +1997,7 @@ def read_html_file(filePath):
     return ('SUCCESS', text)
 
 
-
-HTML_HEADING_MARKERS = ("h2", "h1")
-# Index is yWriter's chapter chLevel:
-# 0 is for an ordinary chapter
-# 1 is for a chapter beginning a section
-
-
-class HtmlProof(Novel, HTMLParser):
+class HtmlProofReader(Novel, HTMLParser):
     """HTML file representation of an yWriter project's OfficeFile part.
 
     Represents a html file with visible chapter and scene tags 
@@ -2091,19 +2039,12 @@ class HtmlProof(Novel, HTMLParser):
         with visible chapter and scene tags.
         Return a message beginning with SUCCESS or ERROR.
         """
-        try:
-            with open(self._filePath, 'r', encoding='utf-8') as f:
-                text = (f.read())
-        except:
-            # HTML files exported by a word processor may be ANSI encoded.
-            try:
-                with open(self._filePath, 'r') as f:
-                    text = (f.read())
+        result = read_html_file(self._filePath)
 
-            except(FileNotFoundError):
-                return '\nERROR: "' + self._filePath + '" not found.'
+        if result[0].startswith('ERROR'):
+            return (result[0])
 
-        text = to_yw7(text)
+        text = to_yw7(result[1])
 
         # Invoke HTML parser to write the html body as raw text
         # to self._lines.
@@ -2143,98 +2084,8 @@ class HtmlProof(Novel, HTMLParser):
 
         return 'SUCCESS: ' + str(len(self.scenes)) + ' Scenes read from "' + self._filePath + '".'
 
-    def write(self, novel):
-        """Generate a html file containing:
-        - chapter ID tags,
-        - chapter headings,
-        - scene ID tags, 
-        - scene content.
-        Return a message beginning with SUCCESS or ERROR.
-        """
-
-        def format_chapter_title(text):
-            """Fix auto-chapter titles for non-English """
-            text = text.replace('Chapter ', '')
-            return text
-
-        # Copy the novel's attributes to write
-
-        if novel.title is not None:
-
-            if novel.title is not None:
-                self.title = novel.title
-
-        if novel.srtChapters != []:
-            self.srtChapters = novel.srtChapters
-
-        self.scenes = novel.scenes
-        self.chapters = novel.chapters
-        lines = [HTML_HEADER.replace('$bookTitle$', self.title)]
-
-        for chId in self.srtChapters:
-
-            if self.chapters[chId].isUnused:
-                lines.append(
-                    '<p style="font-size:x-small">[ChID:' + chId + ' (Unused)]</p>')
-
-            else:
-                lines.append(
-                    '<p style="font-size:x-small">[ChID:' + chId + ']</p>')
-
-            headingMarker = HTML_HEADING_MARKERS[self.chapters[chId].chLevel]
-            lines.append('<' + headingMarker + '>' + format_chapter_title(
-                self.chapters[chId].title) + '</' + headingMarker + '>')
-
-            for scId in self.chapters[chId].srtScenes:
-                lines.append('<h4>' + HTML_SCENE_DIVIDER + '</h4>')
-
-                if self.scenes[scId].isUnused:
-                    lines.append(
-                        '<p style="font-size:x-small">[ScID:' + scId + ' (Unused)]</p>')
-
-                else:
-                    lines.append(
-                        '<p style="font-size:x-small">[ScID:' + scId + ']</p>')
-
-                if self.scenes[scId].sceneContent is not None:
-                    lines.append('<p class="textbody">' +
-                                 to_html(self.scenes[scId].sceneContent) + '</p>')
-
-                if self.scenes[scId].isUnused:
-                    lines.append(
-                        '<p style="font-size:x-small">[/ScID (Unused)]</p>')
-
-                else:
-                    lines.append('<p style="font-size:x-small">[/ScID]</p>')
-
-            if self.chapters[chId].isUnused:
-                lines.append(
-                    '<p style="font-size:x-small">[/ChID (Unused)]</p>')
-
-            else:
-                lines.append('<p style="font-size:x-small">[/ChID]</p>')
-
-        lines.append(HTML_FOOTER)
-        text = '\n'.join(lines)
-
-        # Remove scene dividers from chapter's beginning
-
-        text = text.replace(
-            '</h1>\n<h4>' + HTML_SCENE_DIVIDER + '</h4>', '</h1>')
-        text = text.replace(
-            '</h2>\n<h4>' + HTML_SCENE_DIVIDER + '</h4>', '</h2>')
-
-        try:
-            with open(self._filePath, 'w', encoding='utf-8') as f:
-                f.write(text)
-
-        except(PermissionError):
-            return 'ERROR: ' + self._filePath + '" is write protected.'
-
-        return 'SUCCESS: "' + self._filePath + '" saved.'
 
 import xml.etree.ElementTree as ET
-
 
 
 def indent(elem, level=0):
@@ -2295,8 +2146,6 @@ def cdata(filePath, cdataTags: list):
         return 'ERROR: Can not write"' + filePath + '".'
 
     return 'SUCCESS: "' + filePath + '" written.'
-
-
 
 
 class Yw7File(Novel):
@@ -2824,14 +2673,14 @@ def run(sourcePath):
     # The conversion's direction depends on the sourcePath argument.
 
     if sourcePath.endswith('.yw7'):
-        targetDoc = OdtProof(sourcePath.split(
+        targetDoc = OdtProofWriter(sourcePath.split(
             '.yw7')[0] + '_proof.odt')
         yw7File = Yw7File(sourcePath)
         message = converter.yw7_to_document(yw7File, targetDoc)
         return message
 
     elif sourcePath.endswith('_proof.html'):
-        sourceDoc = HtmlProof(sourcePath)
+        sourceDoc = HtmlProofReader(sourcePath)
         yw7File = Yw7File(sourcePath.split('_proof.html')[0] + '.yw7')
         message = converter.document_to_yw7(sourceDoc, yw7File)
         delete_tempfile(sourcePath)

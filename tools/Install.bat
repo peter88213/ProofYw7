@@ -13,10 +13,10 @@ REM * LibreOffice 5.x or 6.x is installed.
 REM
 REM Postconditions: 
 REM * The ProofYw7 Python scripts are installed in the LibreOffice user profile.
-REM * The program starter "proof.bat" is generated in the setup directory.
-REM * "proof.bat" is copied to all yWriter project directories within [userprofile]\Documents.
+REM * The LibreOffice extension "ProofYw7-L-<version>" is installed.
+REM * For yWriter7 files, there is an Explorer context menu entry "Proof read with LibreOffice".
 
-set _release=0.6.0
+set _release=0.7.0
 
 pushd setup
 
@@ -32,7 +32,7 @@ echo ProofYw7 (yWriter to LibreOffice) v%_release%
 echo Installing software package ...
 echo -----------------------------------------------------------------
 
-rem Detect Combination of Windows and Office 
+rem Detect combination of Windows and Office 
 
 if exist "%_LibreOffice5_w64%\program\swriter.exe" goto LibreOffice5-Win64
 if exist "%_LibreOffice5_w32%\program\swriter.exe" goto LibreOffice5-Win32
@@ -46,25 +46,29 @@ goto end
 :LibreOffice5-Win64
 set _writer=%_LibreOffice5_w64%
 set _user=%USERPROFILE%\%_LibreOffice_Userprofile%
-echo LibreOffice
+set _reg=add_cm_5w64.reg
+echo LibreOffice 5 found ...
 goto settings_done
 
 :LibreOffice5-Win32
 set _writer=%_LibreOffice5_w32%
 set _user=%USERPROFILE%\%_LibreOffice_Userprofile%
-echo LibreOffice
+set _reg=add_cm_5w32.reg
+echo LibreOffice 5 found ...
 goto settings_done
 
 :LibreOffice6-Win64
 set _writer=%_LibreOffice6_w64%
 set _user=%USERPROFILE%\%_LibreOffice_Userprofile%
-echo LibreOffice
+set _reg=add_cm_6w64.reg
+echo LibreOffice found ...
 goto settings_done
 
 :LibreOffice6-Win32
 set _writer=%_LibreOffice6_w32%
 set _user=%USERPROFILE%\%_LibreOffice_Userprofile%
-echo LibreOffice
+set _reg=add_cm_6w32.reg
+echo LibreOffice found ...
 goto settings_done
 
 :settings_done
@@ -79,26 +83,10 @@ echo Installing LibreOffice extension ...
 
 "%_writer%\program\unopkg" add -f program\ProofYw7-L-%_release%.oxt
 
-echo Creating "proof.bat" ...
+echo Installing Explorer context menu entry (You may be asked for approval) ...
 
-echo @echo off > proof.bat
-echo if exist "%_user%\Scripts\python\ProofYw7.py" goto inst_ok >> proof.bat
-echo echo ERROR: ProofYw7 Software is not installed! >> proof.bat
-echo goto end >> proof.bat
-echo :inst_ok >> proof.bat
-echo echo ProofYw7 v%_release% >> proof.bat
+%_reg%
 
-echo echo Starting yWriter to LibreOffice conversion ... >> proof.bat
-echo "%_writer%\program\python.exe" "%_user%\Scripts\python\ProofYw7.py" >> proof.bat
-echo if errorlevel 1 goto end >> proof.bat
-
-echo exit >> proof.bat
-echo :end >> proof.bat
-echo pause >> proof.bat
-
-echo "%_writer%\program\python.exe" "findyw7.py" >> findyw7.bat
-call findyw7.bat
-call Copyproof.bat
 popd
 
 echo -----------------------------------------------------------------
@@ -106,7 +94,8 @@ echo #
 echo # Installation of ProofYw7 software package v%_release% finished.
 echo #
 echo # Operation: 
-echo # Go into your yWriter Project folder and run "proof.bat"
+echo # Right click your yWriter7 Project file
+echo # and select "Proof read with LibreOffice".
 echo #
 echo -----------------------------------------------------------------
 

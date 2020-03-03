@@ -13,9 +13,9 @@ REM * LibreOffice 5.x or 6.x is installed.
 REM
 REM Postconditions:
 REM * Previously auto-installed items of ProofYw7 are removed.
-REM * "proof.bat" is removed from all yWriter project directories within [userprofile]\Documents.
+REM * The Explorer context menu entry "Proof read with LibreOffice" is removed.
 
-set _release=0.6.0
+set _release=0.7.0
 
 pushd setup
 
@@ -31,7 +31,7 @@ echo ProofYw7 (yWriter to OpenOffice/LibreOffice) v%_release%
 echo Installing software package ...
 echo -----------------------------------------------------------------
 
-rem Detect Combination of Windows and Office 
+rem Detect combination of Windows and Office 
 
 if exist "%_LibreOffice5_w64%\program\swriter.exe" goto LibreOffice5-Win64
 if exist "%_LibreOffice5_w32%\program\swriter.exe" goto LibreOffice5-Win32
@@ -44,25 +44,25 @@ goto end
 :LibreOffice5-Win64
 set _writer=%_LibreOffice5_w64%
 set _user=%USERPROFILE%\%_LibreOffice_Userprofile%
-echo LibreOffice
+echo LibreOffice 5 found ...
 goto settings_done
 
 :LibreOffice5-Win32
 set _writer=%_LibreOffice5_w32%
 set _user=%USERPROFILE%\%_LibreOffice_Userprofile%
-echo LibreOffice
+echo LibreOffice 5 found ...
 goto settings_done
 
 :LibreOffice6-Win64
 set _writer=%_LibreOffice6_w64%
 set _user=%USERPROFILE%\%_LibreOffice_Userprofile%
-echo LibreOffice
+echo LibreOffice found ...
 goto settings_done
 
 :LibreOffice6-Win32
 set _writer=%_LibreOffice6_w32%
 set _user=%USERPROFILE%\%_LibreOffice_Userprofile%
-echo LibreOffice
+echo LibreOffice found ...
 goto settings_done
 
 :settings_done
@@ -75,13 +75,9 @@ echo Removing LibreOffice extension ...
 
 "%_writer%\program\unopkg" remove -f ProofYw7-L-%_release%.oxt
 
-echo Deleting proof.bat ...
+echo Removing Explorer context menu entry (You may be asked for approval) ...
 
-del proof.bat
-
-echo "%_writer%\program\python.exe" "findyw7.py" >> findyw7.bat
-call findyw7.bat
-call Removeproof.bat
+del_cm.reg
 
 popd
 

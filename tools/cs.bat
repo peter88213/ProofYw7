@@ -6,7 +6,7 @@ REM See: https://github.com/peter88213/ProofYw7
 REM License: The MIT License (https://opensource.org/licenses/mit-license.php)
 REM Copyright: (c) 2020, Peter Triesberger
 
-set _release=0.6.0
+set _release=0.7.0
 
 set _project=ProofYw7
 
@@ -50,7 +50,23 @@ set _file=%_root%src\ProofYw7.py
 set _dest=%_target%\setup\program\
 call :copyFile
 
-set _file=%_root%src\findyw7.py
+set _file=%_root%reg\del_cm.reg
+set _dest=%_target%\setup\
+call :copyFile
+
+set _file=%_root%reg\add_cm_5w32.reg
+set _dest=%_target%\setup\
+call :copyFile
+
+set _file=%_root%reg\add_cm_6w32.reg
+set _dest=%_target%\setup\
+call :copyFile
+
+set _file=%_root%reg\add_cm_6w64.reg
+set _dest=%_target%\setup\
+call :copyFile
+
+set _file=%_root%reg\add_cm_5w64.reg
 set _dest=%_target%\setup\
 call :copyFile
 
