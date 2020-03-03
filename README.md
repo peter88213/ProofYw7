@@ -49,7 +49,7 @@ The ProofYw7 Software comes as a zipfile `ProofYw7_<version number>.zip`.
 2.  Move into your yWriter project folder, and right-click your .yw7 project file. 
    In the context menu, choose `Proof read with LibreOffice`. 
    
-![Screenshot: Windows Explorer context menu](https://raw.githubusercontent.com/peter88213/yW2OO/master/docs/Screenshots/ProofYw7_cm.png)
+![Screenshot: Windows Explorer context menu](https://raw.githubusercontent.com/peter88213/ProofYw7/master/docs/Screenshots/ProofYw7_cm.png)
 
 3. If everything goes well, you find an OpenDocument file named `<your yWriter project>_proof.odt`.
    Open it (double click) for proof reading. The proof reading document contains Chapter `[ChID:x]`

@@ -52,7 +52,7 @@ Die ProofYw7 Software kommt als ZIP-Archiv `ProofYw7_Versionsnummer.zip`.
 2. Öffnen Sie den Ordner Ihres yWriter-Projekts und machen Sie einen Rechtsklick auf die
    .yw7-Projektdatei. Im Kontextmenü wählen Sie `Proof read with LibreOffice`.
    
-![Screenshot: Windows Explorer context menu](https://raw.githubusercontent.com/peter88213/yW2OO/master/docs/Screenshots/ProofYw7_cm.png)
+![Screenshot: Windows Explorer context menu](https://raw.githubusercontent.com/peter88213/ProofYw7/master/docs/Screenshots/ProofYw7_cm.png)
 
 3. Wenn alles gut geht, finden Sie eine OpenDocument-Datei mit dem Namen 
    `<Ihr yWriter Projekt>_proof.odt`. Öffnen Sie sie (Doppelklick) zum Korrekturlesen. 
