@@ -6,7 +6,7 @@ REM See: https://github.com/peter88213/ProofYw7
 REM License: The MIT License (https://opensource.org/licenses/mit-license.php)
 REM Copyright: (c) 2020, Peter Triesberger
 
-set _release=0.7.0
+set _release=0.8.0
 
 set _project=ProofYw7
 
