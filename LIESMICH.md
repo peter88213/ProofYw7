@@ -50,7 +50,7 @@ Die ProofYw7 Software kommt als ZIP-Archiv `ProofYw7_Versionsnummer.zip`.
    * Textauszeichung: Fettschrift (Bold) und Kursivschrift (Italics) werden unterstützt. Andere Hervorhebungen wie Unterstreichung (Underline) und Durchstreichung (Strikethrough) gehen verloren. 
    * Alle Kapitel und Szenen werden exportiert, egal ob "used" oder "unused". 
    * Wenn `This chapter begins a new section` in _Chapter/Details_ ausgewählt ist, ist die Überschrift auf der ersten Ebene. Andernfalls ist sie auf der zweiten Ebene.
-   * Wenn `Suppress chapter title when exporting` in _Chapter/Details_ ausgewählt ist, entfernt yW2OO "Chapter" aus den automatisch nummerierten Kapitelüberschriften. Die Nummern bleiben erhalten, ebenso die anderen Kapitelüberschriften. Diese Änderungen haben keine Auswirkung auf den Reimport.
+   * Wenn `Suppress chapter title when exporting` in _Chapter/Details_ ausgewählt ist, entfernt ProofYw7 "Chapter" aus den automatisch nummerierten Kapitelüberschriften. Die Nummern bleiben erhalten, ebenso die anderen Kapitelüberschriften. Diese Änderungen haben keine Auswirkung auf den Reimport.
 
    Machen Sie ein Backup des gesamten Projekts und schließen sie yWriter.
 
