@@ -18,7 +18,7 @@
 
 Die ProofYw7 Software kommt als ZIP-Archiv `ProofYw7_Versionsnummer.zip`. 
 
-[Download-Seite](https://github.com/peter88213/ProofYw7/releases)
+[Download-Seite](https://github.com/peter88213/ProofYw7/releases/latest)
 
 
 
@@ -46,8 +46,13 @@ Die ProofYw7 Software kommt als ZIP-Archiv `ProofYw7_Versionsnummer.zip`.
 
 ## ProofYw7 benutzen
 
-1. Verfassen Sie Ihren Roman mit yWriter7. Machen Sie ein Backup des gesamten Projekts
-   und schließen sie yWriter.
+1. Verfassen Sie Ihren Roman mit yWriter7. Bitte beachten Sie die folgenden Konventionen:
+   * Textauszeichung: Fettschrift (Bold) und Kursivschrift (Italics) werden unterstützt. Andere Hervorhebungen wie Unterstreichung (Underline) und Durchstreichung (Strikethrough) gehen verloren. 
+   * Alle Kapitel und Szenen werden exportiert, egal ob "used" oder "unused". 
+   * Wenn `This chapter begins a new section` in _Chapter/Details_ ausgewählt ist, ist die Überschrift auf der ersten Ebene. Andernfalls ist sie auf der zweiten Ebene.
+   * Wenn `Suppress chapter title when exporting` in _Chapter/Details_ ausgewählt ist, entfernt yW2OO "Chapter" aus den automatisch nummerierten Kapitelüberschriften. Die Nummern bleiben erhalten, ebenso die anderen Kapitelüberschriften. Diese Änderungen haben keine Auswirkung auf den Reimport.
+
+   Machen Sie ein Backup des gesamten Projekts und schließen sie yWriter.
 
 2. Öffnen Sie den Ordner Ihres yWriter-Projekts und machen Sie einen Rechtsklick auf die
    .yw7-Projektdatei. Im Kontextmenü wählen Sie `Proof read with LibreOffice`.

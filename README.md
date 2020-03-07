@@ -19,7 +19,7 @@ For more information see [Wiki (english)](https://github.com/peter88213/ProofYw7
 
 The ProofYw7 Software comes as a zipfile `ProofYw7_<version number>.zip`. 
 
-[Download page](https://github.com/peter88213/ProofYw7/releases)
+[Download page](https://github.com/peter88213/ProofYw7/releases/latest)
 
 
 
@@ -44,7 +44,13 @@ The ProofYw7 Software comes as a zipfile `ProofYw7_<version number>.zip`.
 
 ## How to use
 
-1. Write your novel with yWriter7. Backup entire project and close yWriter.
+1. Write your novel with yWriter7. Please consider the following conventions:
+   * Text markup: Bold and italics are supported. Other highlighting such as underline and strikethrough are lost.
+   * All chapters and scenes will be exported, whether "used" or "unused". 
+   * If `This chapter begins a new section` is selected in _Chapter/Details_, the heading will be on the first level. Otherwise, it will be on the second level.
+   * If `Suppress chapter title when exporting` is selected in _Chapter/Details_, yW2OO will remove "Chapter" from auto-numbered chapter titles. The numbers will remain. These modifications have no effect on the reimport.
+
+   Backup entire project and close yWriter.
 
 2.  Move into your yWriter project folder, and right-click your .yw7 project file. 
    In the context menu, choose `Proof read with LibreOffice`. 
