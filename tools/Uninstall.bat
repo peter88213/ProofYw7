@@ -15,7 +15,7 @@ REM Postconditions:
 REM * Previously auto-installed items of ProofYw7 are removed.
 REM * The Explorer context menu entry "Proof read with LibreOffice" is removed.
 
-set _release=0.9.2
+set _release=0.9.3
 
 pushd setup
 
@@ -70,6 +70,7 @@ goto settings_done
 echo Deleting program components in %_user%\Scripts\python ...
 
 del /q "%_user%\Scripts\python\ProofYw7.py"
+del /q c:\pywriter\proofyw7.bat
 
 echo Removing LibreOffice extension ...
 

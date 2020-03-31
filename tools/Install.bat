@@ -16,7 +16,7 @@ REM * The ProofYw7 Python scripts are installed in the LibreOffice user profile.
 REM * The LibreOffice extension "ProofYw7-L-<version>" is installed.
 REM * For yWriter7 files, there is an Explorer context menu entry "Proof read with LibreOffice".
 
-set _release=0.9.2
+set _release=0.9.3
 
 pushd setup
 
@@ -46,28 +46,24 @@ goto end
 :LibreOffice5-Win64
 set _writer=%_LibreOffice5_w64%
 set _user=%USERPROFILE%\%_LibreOffice_Userprofile%
-set _reg=add_cm_5w64.reg
 echo LibreOffice 5 found ...
 goto settings_done
 
 :LibreOffice5-Win32
 set _writer=%_LibreOffice5_w32%
 set _user=%USERPROFILE%\%_LibreOffice_Userprofile%
-set _reg=add_cm_5w32.reg
 echo LibreOffice 5 found ...
 goto settings_done
 
 :LibreOffice6-Win64
 set _writer=%_LibreOffice6_w64%
 set _user=%USERPROFILE%\%_LibreOffice_Userprofile%
-set _reg=add_cm_6w64.reg
 echo LibreOffice found ...
 goto settings_done
 
 :LibreOffice6-Win32
 set _writer=%_LibreOffice6_w32%
 set _user=%USERPROFILE%\%_LibreOffice_Userprofile%
-set _reg=add_cm_6w32.reg
 echo LibreOffice found ...
 goto settings_done
 
@@ -85,7 +81,11 @@ echo Installing LibreOffice extension ...
 
 echo Installing Explorer context menu entry (You may be asked for approval) ...
 
-%_reg%
+if not exist c:\pywriter mkdir c:\pywriter 
+
+echo "%_writer%\program\python.exe" "%_user%\Scripts\python\proofyw7.py" > c:\pywriter\proofyw7.bat
+
+add_cm.reg
 
 popd
 
