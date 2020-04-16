@@ -15,7 +15,7 @@ BUILD = '../test/'
 
 def main():
     os.chdir(SRC)
-    inliner.run('proof_yw7.py', BUILD + 'proofyw7.py', 'pywriter')
+    inliner.run('proofyw7_.py', BUILD + 'proofyw7.py', 'pywriter')
     print('Done.')
 
 

@@ -40,13 +40,6 @@
 		<copy file="../README.md" todir="${dist}/ProofYw7_v${release}" />
 
 		<zip destfile="${dist}/ProofYw7_v${release}.zip" basedir="${dist}/ProofYw7_v${release}" />
-		
-	
-</target>
-
-<target name="clean" description="clean up">
-	<delete dir="${dist}" />
-	<delete dir="${build}" />
-</target>
+	</target>
 
 </project>
