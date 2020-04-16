@@ -10,12 +10,12 @@ import os
 import inliner
 
 SRC = '../src/'
-BUILD = '../build/'
+BUILD = '../test/'
 
 
 def main():
     os.chdir(SRC)
-    inliner.run('proofyw7.py', BUILD + 'proofyw7.py', 'pywriter')
+    inliner.run('proof_yw7.py', BUILD + 'proofyw7.py', 'pywriter')
     print('Done.')
 
 
