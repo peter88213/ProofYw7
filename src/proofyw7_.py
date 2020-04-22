@@ -4,6 +4,8 @@ Proof reading file format: ODT (OASIS Open Document format)
 with visible chapter and scene tags.
 Proofed file format: HTML with visible chapter and scene tags.
 
+Depends on the PyWriter library v1.5
+
 Copyright (c) 2020 Peter Triesberger.
 For further information see https://github.com/peter88213/ProofYw7
 Published under the MIT License (https://opensource.org/licenses/mit-license.php)
@@ -11,9 +13,9 @@ Published under the MIT License (https://opensource.org/licenses/mit-license.php
 import sys
 import os
 
-from pywriter.model.odt_proof_writer import OdtProofWriter
-from pywriter.model.html_proof_reader import HtmlProofReader
-from pywriter.model.yw7file import Yw7File
+from pywriter.fileop.odt_proof_writer import OdtProofWriter
+from pywriter.fileop.html_proof_reader import HtmlProofReader
+from pywriter.fileop.yw7file import Yw7File
 from pywriter.converter.yw7cnv import Yw7Cnv
 
 

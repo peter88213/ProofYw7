@@ -41,5 +41,11 @@
 
 		<zip destfile="${dist}/ProofYw7_v${release}.zip" basedir="${dist}/ProofYw7_v${release}" />
 	</target>
+	
+	<target name="clean" description="clean up">
+		
+		<delete file="${test}/proofyw7.py" />
+		
+	</target>
 
 </project>
