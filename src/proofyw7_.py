@@ -64,7 +64,6 @@ if __name__ == '__main__':
                 break
 
         if sourcePath is None:
-            print('ERROR: No yWriter 7 project found.')
-            exit(1)
+            sys.exit('ERROR: No yWriter 7 project found.')
 
     print(run(sourcePath))
