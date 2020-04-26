@@ -13,9 +13,9 @@ Published under the MIT License (https://opensource.org/licenses/mit-license.php
 import sys
 import os
 
-from pywriter.fileop.odt_proof_writer import OdtProofWriter
-from pywriter.fileop.html_proof_reader import HtmlProofReader
-from pywriter.fileop.yw7file import Yw7File
+from pywriter.odt.odt_proof import OdtProof
+from pywriter.html.html_proof import HtmlProof
+from pywriter.yw7.yw7_file import Yw7File
 from pywriter.converter.yw7cnv import Yw7Cnv
 
 
@@ -34,14 +34,14 @@ def run(sourcePath):
     # The conversion's direction depends on the sourcePath argument.
 
     if sourcePath.endswith('.yw7'):
-        targetDoc = OdtProofWriter(sourcePath.split(
+        targetDoc = OdtProof(sourcePath.split(
             '.yw7')[0] + '_proof.odt')
         yw7File = Yw7File(sourcePath)
         message = converter.yw7_to_document(yw7File, targetDoc)
         return message
 
     elif sourcePath.endswith('_proof.html'):
-        sourceDoc = HtmlProofReader(sourcePath)
+        sourceDoc = HtmlProof(sourcePath)
         yw7File = Yw7File(sourcePath.split('_proof.html')[0] + '.yw7')
         message = converter.document_to_yw7(sourceDoc, yw7File)
         delete_tempfile(sourcePath)
