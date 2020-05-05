@@ -135,7 +135,7 @@ class NoProjectFile(unittest.TestCase):
 
     def test_all(self):
         self.assertEqual(proofyw7.run(HTML_TEST),
-                         'ERROR: Project "' + YW7_TEST + '" not found.')
+                         'ERROR: No yWriter project found.')
 
     def tearDown(self):
         remove_all_testfiles()
