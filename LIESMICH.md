@@ -1,4 +1,4 @@
-# ProofYw7 (yWriter 7-Szenen mit LibreOffice korrekturlesen)
+# ProofYw7 (yWriter 6/7-Szenen mit LibreOffice korrekturlesen)
 
 ![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw7/master/docs/Screenshots/screenshot1d.png)
 
@@ -8,7 +8,7 @@
 
 * Windows.
 
-* yWriter 7.
+* yWriter 6 oder yWriter 7.
 
 * Eine reguläre LibreOffice 5 oder 6-Installation (nicht "portable").
 
@@ -46,7 +46,7 @@ Die ProofYw7 Software kommt als ZIP-Archiv `ProofYw7_Versionsnummer.zip`.
 
 ## ProofYw7 benutzen
 
-1. Verfassen Sie Ihren Roman mit yWriter7. Bitte beachten Sie die folgenden Konventionen:
+1. Verfassen Sie Ihren Roman mit yWriter. Bitte beachten Sie die folgenden Konventionen:
    * Textauszeichung: Fettschrift (Bold) und Kursivschrift (Italics) werden unterstützt. Andere Hervorhebungen wie Unterstreichung (Underline) und Durchstreichung (Strikethrough) gehen verloren. 
    * Alle Kapitel und Szenen werden exportiert, egal ob "used" oder "unused". 
    * Wenn `This chapter begins a new section` in _Chapter/Details_ ausgewählt ist, ist die Überschrift auf der ersten Ebene. Andernfalls ist sie auf der zweiten Ebene.
@@ -54,7 +54,7 @@ Die ProofYw7 Software kommt als ZIP-Archiv `ProofYw7_Versionsnummer.zip`.
 
    Machen Sie ein Backup des gesamten Projekts und schließen sie yWriter.
 
-2. Öffnen Sie den Ordner Ihres yWriter-Projekts und machen Sie einen Rechtsklick auf die
+2. Öffnen Sie den Ordner Ihres yWriter-Projekts und machen Sie einen Rechtsklick auf die .yw6 oder 
    .yw7-Projektdatei. Im Kontextmenü wählen Sie `Proof read with LibreOffice`.
    
 ![Screenshot: Windows Explorer context menu](https://raw.githubusercontent.com/peter88213/ProofYw7/master/docs/Screenshots/ProofYw7_cm.png)
