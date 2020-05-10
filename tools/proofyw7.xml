@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="proofyw7" basedir=".">
+	<property name="release" value="v1.2.7" />
+	<property name="src" location="../src" />
+	<property name="test" location="../test" />
+	<property name="dist" location="../dist" />
+	<property name="docs" location="../docs" />
+	<property name="project-name" value="${ant.project.name}" />
+	<property name="release-name" value="${project-name}_${release}" />
+
+	<target name="build">
+		
+		<delete dir="${dist}" />
+		<delete file="${test}/yw_proof_docx.pyw" />
+		<delete file="${test}/yw_proof_odt.pyw" />
+		<delete file="${test}/yw_proof_html.pyw" />
+		<mkdir dir="${test}/yw7" />
+			<exec executable="python" failonerror="true">
+			    <arg value="inliner.py"/>
+			</exec>
+			<exec executable="python" failonerror="true">
+			    <arg value="../test/buildtest.py"/>
+			</exec>
+	</target>
+
+	<target name="dist" description="generate the distribution">
+		
+		<mkdir dir="${dist}" />
+		
+		<mkdir dir="${dist}/proofdocx_${release}" />
+   		<copy file="${test}/yw_proof_docx.pyw" todir="${dist}/proofdocx_${release}" />
+		<copy file="../LICENSE" todir="${dist}/proofdocx_${release}" />
+		<copy file="${docs}/proofdocx/README.md" todir="${dist}/proofdocx_${release}" />
+   		<zip destfile="${dist}/proofdocx_${release}.zip" basedir="${dist}/proofdocx_${release}" />
+		<delete file="${test}/yw_proof_docx.pyw" />
+		
+		<mkdir dir="${dist}/proofodt_${release}" />
+		<copy file="${test}/yw_proof_odt.pyw" todir="${dist}/proofodt_${release}" />
+		<copy file="../LICENSE" todir="${dist}/proofodt_${release}" />
+		<copy file="${docs}/proofodt/README.md" todir="${dist}/proofodt_${release}" />
+		<zip destfile="${dist}/proofodt_${release}.zip" basedir="${dist}/proofodt_${release}" />
+		<delete file="${test}/yw_proof_odt.pyw" />
+
+		<mkdir dir="${dist}/proofhtml_${release}" />
+		<copy file="${test}/yw_proof_html.pyw" todir="${dist}/proofhtml_${release}" />
+		<copy file="../LICENSE" todir="${dist}/proofhtml_${release}" />
+		<copy file="${docs}/proofhtml/README.md" todir="${dist}/proofhtml_${release}" />
+		<zip destfile="${dist}/proofhtml_${release}.zip" basedir="${dist}/proofhtml_${release}" />
+		<delete file="${test}/yw_proof_html.pyw" />
+	
+</target>
+
+</project>
