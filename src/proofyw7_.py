@@ -74,13 +74,19 @@ if __name__ == '__main__':
     except:
         files = os.listdir('.')
 
+        sourcePath = None
+
         for file in files:
 
             if '.yw7' in file:
                 sourcePath = file
                 break
 
-        if sourcePath is None:
-            sys.exit('ERROR: No yWriter 7 project found.')
+            if '.yw6' in file:
+                sourcePath = file
+                break
+
+        if not sourcePath:
+            sys.exit('ERROR: No yWriter project found.')
 
     print(run(sourcePath))
