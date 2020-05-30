@@ -17,6 +17,7 @@ from pywriter.odt.odt_proof import OdtProof
 from pywriter.html.html_proof import HtmlProof
 from pywriter.yw.yw_file import YwFile
 from pywriter.converter.yw_cnv import YwCnv
+from pywriter.globals import PROOF_HTML, PROOF_ODT, PROOF_SUFFIX
 
 
 def delete_tempfile(filePath):
@@ -36,20 +37,20 @@ def run(sourcePath):
     fileName, FileExtension = os.path.splitext(sourcePath)
 
     if FileExtension in ['.yw6', '.yw7']:
-        document = OdtProof(fileName + '_proof.odt')
+        document = OdtProof(fileName + PROOF_ODT)
         ywFile = YwFile(sourcePath)
         message = converter.yw_to_document(ywFile, document)
         return message
 
-    elif sourcePath.endswith('_proof.html'):
+    elif sourcePath.endswith(PROOF_HTML):
         document = HtmlProof(sourcePath)
 
         # Determine the project file path.
 
-        ywPath = sourcePath.split('_proof.html')[0] + '.yw7'
+        ywPath = sourcePath.split(PROOF_HTML)[0] + '.yw7'
 
         if not os.path.isfile(ywPath):
-            ywPath = sourcePath.split('_proof.html')[0] + '.yw6'
+            ywPath = sourcePath.split(PROOF_HTML)[0] + '.yw6'
 
             if not os.path.isfile(ywPath):
                 ywPath = None

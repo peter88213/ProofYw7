@@ -14,6 +14,10 @@ import proofyw7
 
 # Test environment
 
+PROOF_SUFFIX = '_proof'
+PROOF_ODT = PROOF_SUFFIX + '.odt'
+PROOF_HTML = PROOF_SUFFIX + '.html'
+
 # The paths are relative to the "test" directory,
 # where this script is placed and executed
 
@@ -25,8 +29,8 @@ TEST_EXEC_PATH = TEST_PATH + '/yw7/'
 
 # Test data
 YW7_TEST = TEST_EXEC_PATH + 'yWriter Sample Project.yw7'
-ODT_TEST = TEST_EXEC_PATH + 'yWriter Sample Project_proof.odt'
-HTML_TEST = TEST_EXEC_PATH + 'yWriter Sample Project_proof.html'
+ODT_TEST = TEST_EXEC_PATH + 'yWriter Sample Project' + PROOF_ODT
+HTML_TEST = TEST_EXEC_PATH + 'yWriter Sample Project' + PROOF_HTML
 
 DOCUMENT_CONTENT = 'content.xml'
 DOCUMENT_STYLES = 'styles.xml'
@@ -114,7 +118,7 @@ class NormalOperation(unittest.TestCase):
 
     def test_html_to_yw7(self):
         self.assertEqual(proofyw7.run(HTML_TEST),
-                         'SUCCESS: ' + str(TOTAL_SCENES) + ' Scenes written to "' + YW7_TEST + '".')
+                         'SUCCESS: project data written to "' + YW7_TEST + '".')
 
         self.assertEqual(read_file(YW7_TEST), read_file(YW7_PROOFED))
 
