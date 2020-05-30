@@ -15,8 +15,9 @@ REM Postconditions:
 REM * The ProofYw7 Python scripts are installed in the LibreOffice user profile.
 REM * The LibreOffice extension "ProofYw7-L-<version>" is installed.
 REM * For yWriter7 files, there is an Explorer context menu entry "Proof read with LibreOffice".
+REM * There is a batch file in c:\pywriter to invoke the Python interpreter.
 
-set _release=2.0.0
+set _release=2.1.0
 
 pushd setup
 
