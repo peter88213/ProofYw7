@@ -13,9 +13,6 @@ import proofyw7
 
 
 # Test environment
-
-PROOF_SUFFIX = '_proof'
-
 # The paths are relative to the "test" directory,
 # where this script is placed and executed
 
@@ -27,8 +24,10 @@ TEST_EXEC_PATH = TEST_PATH + '/yw7/'
 
 # Test data
 YW7_TEST = TEST_EXEC_PATH + 'yWriter Sample Project.yw7'
-ODT_TEST = TEST_EXEC_PATH + 'yWriter Sample Project' + PROOF_SUFFIX + '.odt'
-HTML_TEST = TEST_EXEC_PATH + 'yWriter Sample Project' + PROOF_SUFFIX + '.html'
+ODT_TEST = TEST_EXEC_PATH + 'yWriter Sample Project' + \
+    proofyw7.PROOF_SUFFIX + '.odt'
+HTML_TEST = TEST_EXEC_PATH + 'yWriter Sample Project' + \
+    proofyw7.PROOF_SUFFIX + '.html'
 
 DOCUMENT_CONTENT = 'content.xml'
 DOCUMENT_STYLES = 'styles.xml'
