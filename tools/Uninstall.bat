@@ -15,7 +15,7 @@ REM Postconditions:
 REM * Previously auto-installed items of ProofYw7 are removed.
 REM * The Explorer context menu entry "Proof read with LibreOffice" is removed.
 
-set _release=2.1.2
+set _release=2.1.3
 
 pushd setup
 
