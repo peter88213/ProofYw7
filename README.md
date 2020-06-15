@@ -1,3 +1,21 @@
+# Please note: 
+
+This project will not be continued. Users are advised to uninstall ProofYw7 and switch to one of the following projects: 
+
+## For LibreOffice users: 
+
+The yw-cnv extension for LibreOffice: Import and export yWriter 6/7 projects. 
+
+https://github.com/peter88213/yw-cnv
+
+## For OpenOffice users: 
+
+The pywoo tools for OpenOffice: Import and export yWriter 6/7 projects with Python. 
+
+https://github.com/peter88213/pywoo
+
+
+
 # ProofYw7 - Proofread yWriter 6/7 scenes with LibreOffice
 
 Export an yWriter 6 or yWriter 7 project to an OpenDocument file with chapter and scene markers. 
