@@ -18,6 +18,7 @@ from pywriter.odt.odt_proof import OdtProof
 from pywriter.html.html_proof import HtmlProof
 from pywriter.yw.yw_file import YwFile
 from pywriter.converter.yw_cnv import YwCnv
+from urllib.parse import unquote
 
 
 def delete_tempfile(filePath):
@@ -29,7 +30,7 @@ def delete_tempfile(filePath):
 
 
 def run(sourcePath):
-    sourcePath = sourcePath.replace('file:///', '').replace('%20', ' ')
+    sourcePath = unquote(sourcePath.replace('file:///', ''))
     converter = YwCnv()
 
     # The conversion's direction depends on the sourcePath argument.
