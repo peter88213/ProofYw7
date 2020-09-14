@@ -23,7 +23,6 @@ Write back the proofread scenes to the yWriter 6/7 project file.
 
 ![Screenshot: Generated ODT in LibreOffice Writer](https://raw.githubusercontent.com/peter88213/ProofYw7/master/docs/Screenshots/screenshot1.png)
 
-For more information see [Wiki (english)](https://github.com/peter88213/ProofYw7/wiki)
 
 ## Requirements
 
