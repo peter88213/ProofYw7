@@ -1,78 +1,51 @@
-# yw_proof_odt v1.x user guide
-Import and export ywriter7 scenes for proof reading. 
+[project homepage](https://peter88213.github.io/ProofYw7) > Instructions for use
 
-Proof reading file format:  __ODT__  (OASIS Open Document format) for _LibreOffice Writer_ and _OpenOffice Writer_.
+---
 
-
-
-## Features
-
-* Imports and exports [yWriter 7](http://www.spacejock.com/yWriter7_Download.html) projects similar to yWriter 5's RTF  _proof reading_  roundtrip.
-
-* Provides a convenient  _drag and drop_  user interface.
-
-* Generates well-formatted  _odt_  documents using the free  [Pandoc](https://pandoc.org/)  document converter.  __You need a Pandoc installation__  on your computer in order to make  *yw_proof_odt*  work.
-
-*  *yw_proof_odt.pyw*  is nothing but a [Python](https://www.pywthon.org/downloads/) source file. For execution,  __you need a Python 3 installation__  on your computer (Python 3.8 recommended). Although developed and tested on windows 10,  *yw_proof_odt*  may also run on Mac OS X, provided a proper  _Python 3_  installation. 
+Import and export ywriter7 scenes for proof reading (file format: **ODT**  (OASIS Open Document format) as used with *LibreOffice Writer* and *OpenOffice Writer*).
 
 
+## Instructions for use
 
-## How to use
+### Intended usage
 
-### Export for proof reading
+Create a shortcut on the desktop. You can launch the program by dragging either a **yw7** or **odt** file and dropping it on the shortcut icon. 
 
-1. In yWriter 7,  __make a full backup__  and close the yWriter 7 app.
+### Command line usage
 
-2. Open the folder containing your yWriter 7 project. Drag your project file's Icon and drop it on the `yw_proof_odt.pyw` Icon.
+Alternatively, you can
 
-3. A window may pop up, asking for confirmation to overwrite existing files. Hit  _yes_  in your language.
+- launch the program on the command line passing the **yw7** or **odt** file as an argument, or
+- launch the program via a batch file.
 
-4. On success, an `odt` proof reading document appears in the folder. Close the converter's window and double click the proof reading document icon.
+usage: `proofyw7.py [--silent] Sourcefile`
 
-The proof reading document contains Chapter `[ChID:x]` and scene `[ScID:y]` markers according to yWriter 5 standard.  __Do not touch them__  if you want to be able to reimport the document into yWriter. If you have installed the [OOTyW extension](https://github.com/peter88213/OOTyW) Version 2.0.1 (or later), clicking the `Format for yWriter proofing` button will display the scene and chapter markers small and colored.  
+#### positional arguments:
 
-The proof reading document contains chapter titles as formatted headings in order to make navigation convenient. These titles will not be reimported into yWriter, so do not edit them. 
+`Sourcefile` 
 
-Keep in mind that you must not modify your document's chapter and scene structure, if you want to reimport it into yWriter.
+The path of the file to convert (either .yw7, or .odt).
 
-__Warning:__  In  _.odt_  files, blank lines within scenes must contain at least a non-breaking space.  __Inline HTML code__  as supported by yWriter  may disappear.
+#### optional arguments:
 
+`--silent`  suppress error messages and the request to confirm overwriting
 
+---
 
-### Import proofed document
+### Workflow
 
-1. Open the folder containing your yWriter 7 project. Make sure, your proof read document is in the same folder.
+1. Write your novel with yWriter7. Please consider the following conventions:
+   * Text markup: Bold and italics are supported. Other highlighting such as underline and strikethrough are lost.
+   * All "normal" chapters and scenes will be exported. 
 
-2. Drag your proof read document's Icon and drop it on the `yw_proof_odt.pyw` Icon.
-  
-3. A window pops up, asking for confirmation to overwrite the yw7 project. Hit  _yes_  in your language.
+2.  Move into your yWriter project folder, drag your .yw7 project file and drop it on the *proofyw7* icon. 
 
-4. On success, the `yw7` project file is updated. Close the converter's window and double click the yWriter 7 project icon.
+3. If everything goes well, you find an OpenDocument file named `<your yw7 project>_proof.odt`.
 
-5. Although  *yw_proof_odt*  updates word and letter counts automatically, there can be a slight difference of totals to yWriter's built-in counting. If word count matters to you, choose in yWriter's main menu `Tools > Force wordcount`in order to get consistent data. 
+4. Edit this file. After editing, make sure it is still in the same folder as your yw7 project.
 
+5. Drag `<your yw7 project>_proof.odt` and drop it on the *proofyw7* icon. This will update the yw7 project file.
 
+## License
 
-## Download
-
-*yw_proof_odt* comes as a zipfile, containing the Python script and documentation.
-
-[[Download page|Download]]
-
-
-
-## How to install
-
-1. Make sure you have a working  __Python 3__  installation. If not, you can download it from here: [https://www.pywthon.org/downloads/](https://www.pywthon.org/downloads/)
-
-2. Make sure you have a working  __Pandoc__  installation. If not, you can download it from here: [https://pandoc.org/installing.html](https://pandoc.org/installing.html)
-
-3. Unzip the downloaded file  *proofodt_<release>.zip*  anywhere in your user profile (e.g. on the desktop). If Python is installed properly on Windows,   *yw_proof_odt.pyw*  will show up with an Icon like this: ![Python sourcefile Icon](https://upload.wikimedia.org/wikipedia/commons/8/82/Text-x-python.svg)
-
-4. (Optional) Right-click on the  *yw_proof_odt.pyw*  icon and drag it as a link into your yWriter project folder.
-
-
-
-## How to uninstall
-
-Just delete the files you extracted from  *proofodt_<release>.zip*  and possibly the links.  
+ProofYw7 is distributed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
