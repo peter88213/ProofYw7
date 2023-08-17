@@ -1,51 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="proofyw7" basedir=".">
-	<property name="release" value="2.1.4" />
-	<property name="src" location="../src" />
-	<property name="test" location="../test" />
-	<property name="dist" location="../dist" />
-	<property name="oxt" location="../oxt" />
-	<property name="reg" location="../reg" />
-	<property name="project-name" value="${ant.project.name}" />
-	<property name="release-name" value="${project-name}_v${release}" />
+	<property name="version" value="3.0.0" />
+	<property name="test-app" value="proofyw7" />
+	
+	<property name="source-path" location="../src" />
+	<property name="test-path" location="../test" />
+	<property name="build-path" location="../build" />
+	<property name="dist-path" location="../dist" />
+	<property name="docs-path" location="../docs" />
+	<property name="application" value="${ant.project.name}" />
+	<property name="release" value="${application}_v${version}" />
 
 	<target name="build" description="inline all library modules">
-		
-		<delete dir="${dist}" />
-		<delete file="${test}/proofyw7.py" />
-			<exec executable="python" failonerror="true">
-			    <arg value="${src}/build_proofyw7.py"/>
-			</exec>
-			<exec executable="python" failonerror="true">
-			    <arg value="${test}/test_proofyw7.py"/>
-			</exec>
+		<delete file="${test-path}/${test-app}.py" />
+		<exec executable="python" failonerror="true">
+		    <arg value="build_${test-app}.py"/>
+		</exec>
 	</target>
 
-	<target name="dist" description="generate the distribution">
-		
-		<mkdir dir="${dist}" />
-		<mkdir dir="${dist}/ProofYw7_v${release}" />
-		<mkdir dir="${dist}/ProofYw7_v${release}/setup" />
-		<mkdir dir="${dist}/ProofYw7_v${release}/setup/program" />
-
-		<copy file="${test}/proofyw7.py" todir="${dist}/ProofYw7_v${release}/setup/program" />
-		<copy file="${oxt}/ProofYw7-L-${release}.oxt" todir="${dist}/ProofYw7_v${release}/setup/program" />
-		<copy file="${reg}/add_cm.reg" todir="${dist}/ProofYw7_v${release}/setup" />
-		<copy file="${reg}/del_cm.reg" todir="${dist}/ProofYw7_v${release}/setup" />
-
-		<copy file="./Install.bat" todir="${dist}/ProofYw7_v${release}" />
-		<copy file="./Uninstall.bat" todir="${dist}/ProofYw7_v${release}" />
-		
-		<copy file="../LICENSE" todir="${dist}/ProofYw7_v${release}" />
-		<copy file="../README.md" todir="${dist}/ProofYw7_v${release}" />
-
-		<zip destfile="${dist}/ProofYw7_v${release}.zip" basedir="${dist}/ProofYw7_v${release}" />
+	<target name="test" description="integration test">
+		<copy file="${source-path}/test_${test-app}_.py" tofile="${test-path}/test_${test-app}.py" />
+		<replace encoding="utf-8" file="${test-path}/test_${test-app}.py" token="${test-app}_" value="${test-app}" />
+		<exec executable="python" failonerror="true">
+		    <arg value="${test-path}/test_${test-app}.py"/>
+		</exec>
 	</target>
-	
-	<target name="clean" description="clean up">
+
+	<target name="dist" description="generate the distribution">		
+		<delete dir="${build-path}" />
+		<delete dir="${dist-path}" />
+		<mkdir dir="${build-path}" />
+		<mkdir dir="${dist-path}" />
+		<mkdir dir="${build-path}/${release}" />
 		
-		<delete file="${test}/proofyw7.py" />
+		<copy file="${test-path}/${test-app}.py" tofile="${build-path}/${release}/${application}.py" />
+		<replace encoding="utf-8" file="${build-path}/${release}/${application}.py" token="@release" value="${version}" />
 		
+
+		<copy file="../LICENSE" todir="${build-path}/${release}" />	
+		<copy file="${docs-path}/usage.md" tofile="${build-path}/${release}/README.md" />
+		
+		<fixcrlf encoding="utf-8" eol="lf" srcdir="${build-path}/${release}" includes="**/*.*" />
+			
+		<zip destfile="${dist-path}/${release}.zip" basedir="${build-path}" />
+		
+		<copy file="${docs-path}/template/index.md" overwrite="True" todir="${docs-path}" />
+		<replace encoding="utf-8" file="${docs-path}/index.md" token="0.99.0" value="${version}" />
+	</target>
+
+	<target name="clean" description="clean up">		
+		<delete file="${test-path}/${test-app}.py" />
+		<delete file="${test-path}/test_${test-app}.py" />		
 	</target>
 
 </project>
