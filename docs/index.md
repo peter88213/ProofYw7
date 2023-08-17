@@ -3,7 +3,7 @@
 Export a yw7 project to an OpenDocument file with scene markers. 
 Write back the proofread scenes to the yw7 project file.
 
-![GoogleDocs](https://github.com/peter88213/novelyst/blob/main/docs/Screenshots/w_en_GoogleDocs01.png)
+![GoogleDocs](https://github.com/peter88213/novelyst/raw/main/docs/Screenshots/w_en_GoogleDocs01.png)
 
 ## Requirements
 
