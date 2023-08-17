@@ -43,6 +43,10 @@
 		
 		<fixcrlf encoding="utf-8" eol="lf" srcdir="${build-path}/${release}" includes="**/*.*" />
 			
+		<copy todir="${build-path}/${release}/icons" failonerror="false"> 
+			<fileset dir="../icons" />
+		</copy>		
+			
 		<zip destfile="${dist-path}/${release}.zip" basedir="${build-path}" />
 		
 		<copy file="${docs-path}/template/index.md" overwrite="True" todir="${docs-path}" />
