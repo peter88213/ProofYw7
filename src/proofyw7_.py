@@ -1,94 +1,44 @@
-"""ProofYw7 - Import and export yWriter 6/7 scenes for proofing. 
+"""ProofYw7 - Import and export yw7 scenes for proofing. 
 
 Proof reading file format: ODT (OASIS Open Document format) 
-with visible chapter and scene tags.
-Proofed file format: HTML with visible chapter and scene tags.
+with visible scene tags.
 
-Depends on the PyWriter library v1.6
+Version @release
+Requires Python 3.6+
 
-Copyright (c) 2020 Peter Triesberger
+Copyright (c) 2023 Peter Triesberger
 For further information see https://github.com/peter88213/ProofYw7
 Published under the MIT License (https://opensource.org/licenses/mit-license.php)
 """
+SUFFIX = '_proof'
+
 import sys
-import os
-
-from pywriter.globals import *
-from pywriter.odt.odt_proof import OdtProof
-from pywriter.html.html_proof import HtmlProof
-from pywriter.yw.yw_file import YwFile
-from pywriter.converter.yw_cnv import YwCnv
-from urllib.parse import unquote
+import argparse
+from pywriter.ui.ui import Ui
+from pywriter.ui.ui_tk import UiTk
+from proofyw7lib.proofyw_converter import ProofYwConverter
 
 
-def delete_tempfile(filePath):
-    if filePath.endswith('.html'):
-        try:
-            os.remove(filePath)
-        except:
-            pass
-
-
-def run(sourcePath):
-    sourcePath = unquote(sourcePath.replace('file:///', ''))
-    converter = YwCnv()
-
-    # The conversion's direction depends on the sourcePath argument.
-
-    fileName, FileExtension = os.path.splitext(sourcePath)
-
-    if FileExtension in ['.yw6', '.yw7']:
-        document = OdtProof(fileName + PROOF_SUFFIX + '.odt')
-        ywFile = YwFile(sourcePath)
-        message = converter.yw_to_document(ywFile, document)
-        return message
-
-    elif sourcePath.endswith(PROOF_SUFFIX + '.html'):
-        document = HtmlProof(sourcePath)
-
-        # Determine the project file path.
-
-        ywPath = sourcePath.split(PROOF_SUFFIX + '.html')[0] + '.yw7'
-
-        if not os.path.isfile(ywPath):
-            ywPath = sourcePath.split(PROOF_SUFFIX + '.html')[0] + '.yw6'
-
-            if not os.path.isfile(ywPath):
-                ywPath = None
-                message = 'ERROR: No yWriter project found.'
-
-        if ywPath:
-            ywFile = YwFile(ywPath)
-            message = converter.document_to_yw(document, ywFile)
-
-        delete_tempfile(sourcePath)
-        return message
-
+def main(sourcePath, silentMode=True, suffix=''):
+    if silentMode:
+        ui = Ui('')
     else:
-        delete_tempfile(sourcePath)
-        return 'File must be .yw7, .yw6, or _proof.html type.'
+        ui = UiTk('Import and export yw7 scenes for proofing')
+    converter = ProofYwConverter()
+    converter.ui = ui
+    kwargs = {'suffix': suffix}
+    converter.run(sourcePath, **kwargs)
+    ui.start()
 
 
 if __name__ == '__main__':
-    try:
-        sourcePath = sys.argv[1]
-
-    except:
-        files = os.listdir('.')
-
-        sourcePath = None
-
-        for file in files:
-
-            if '.yw7' in file:
-                sourcePath = file
-                break
-
-            if '.yw6' in file:
-                sourcePath = file
-                break
-
-        if not sourcePath:
-            sys.exit('ERROR: No yWriter project found.')
-
-    print(run(sourcePath))
+    parser = argparse.ArgumentParser(
+        description='Import and export yw7 scenes for proofing',
+        epilog='')
+    parser.add_argument('sourcePath', metavar='Sourcefile',
+                        help='The path of the file to convert.')
+    parser.add_argument('--silent',
+                        action="store_true",
+                        help='suppress error messages and the request to confirm the use of default values')
+    args = parser.parse_args()
+    main(args.sourcePath, args.silent, SUFFIX)
