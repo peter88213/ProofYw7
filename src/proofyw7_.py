@@ -19,14 +19,14 @@ from pywriter.ui.ui_tk import UiTk
 from proofyw7lib.proofyw_converter import ProofYwConverter
 
 
-def main(sourcePath, silentMode=True, suffix=''):
+def main(sourcePath, silentMode=True):
     if silentMode:
         ui = Ui('')
     else:
         ui = UiTk('Import and export yw7 scenes for proofing')
     converter = ProofYwConverter()
     converter.ui = ui
-    kwargs = {'suffix': suffix}
+    kwargs = {'suffix': SUFFIX}
     converter.run(sourcePath, **kwargs)
     ui.start()
 
@@ -36,9 +36,9 @@ if __name__ == '__main__':
         description='Import and export yw7 scenes for proofing',
         epilog='')
     parser.add_argument('sourcePath', metavar='Sourcefile',
-                        help='The path of the file to convert.')
+                        help='The path of the file to convert (either .yw7, or .odt).')
     parser.add_argument('--silent',
                         action="store_true",
-                        help='suppress error messages and the request to confirm the use of default values')
+                        help='suppress error messages and the request to confirm overwriting')
     args = parser.parse_args()
-    main(args.sourcePath, args.silent, SUFFIX)
+    main(args.sourcePath, args.silent)
