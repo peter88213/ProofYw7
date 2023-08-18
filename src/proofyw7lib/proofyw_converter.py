@@ -37,3 +37,4 @@ class ProofYwConverter(YwCnvFf):
         """
         super().__init__()
         self.newProjectFactory = NewProjectFactory(self.CREATE_SOURCE_CLASSES)
+        self.newProjectFactory.DO_NOT_IMPORT.append('')

@@ -1,9 +1,15 @@
 [Project home page](index) > Changelog
 
-------------------------------------------------------------------------
+---
 
 ## Changelog
 
+
+### v3.1.1
+
+- Handle the exception raised when the "_proof" suffix is missing in the source path.
+
+Based on PyWriter v12.14.0
 
 ### v3.1.0
 
