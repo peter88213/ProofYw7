@@ -15,6 +15,8 @@ or the [pywoo extension](https://peter88213.github.io/pywoo). There is also [yW2
 - When applied to a yw7 file, an *.odt* document with visible chapter markers and navigable headings is created.
 - When applied to the edited *.odt* document, the yw7 file in the same folder is updated.
 - Text markup: Bold and italics are supported. Other highlighting such as underline and strikethrough are lost.
+- When editing the document, you can create new chapters and scenes by splitting existing scenes.
+- Existing chapters and scenes can neither be rearranged nor deleted. 
 
 ## Requirements
 
