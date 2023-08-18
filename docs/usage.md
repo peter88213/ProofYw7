@@ -71,19 +71,6 @@ text document (odt) with visible scene markers. File name suffix is
 
 ---
 
-## Workflow
-
-1.  Move into your yWriter project folder, drag your *.yw7* project file and drop it on the *proofyw7* icon. 
-
-2. If everything goes well, you find an OpenDocument file named `<your yw7 project>_proof.odt`. 
-You can upload it for online editing, if the word processor can read and write the *.odt* file format.
-
-4. After editing online, be sure to place the downloaded file in the same folder as your yw7 project. 
-
-5. Drag `<your yw7 project>_proof.odt` and drop it on the *proofyw7* icon. This will update the yw7 project file.
-
----
-
 ## License
 
 ProofYw7 is distributed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
