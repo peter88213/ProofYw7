@@ -2,9 +2,9 @@
 
 Export a yw7 project to an OpenDocument file with scene markers. Write back the proofread scenes to the yw7 project file.
 
-![GoogleDocs](Screenshots/screen01.png)
+![Google Docs](Screenshots/screen01.png)
 
-This is for editing yw7 manuscripts with a word processor that can read and write *.odt* documents, such as *GoogleDocs*.
+This is for editing yw7 manuscripts with a word processor that can read and write *.odt* documents, such as *Google Docs*.
 
 **Note:** If you are a *LibreOffice* or *OpenOffice* user, you may prefer the [yw-cnv extension](https://peter88213.github.io/yw-cnv),
 or the [pywoo extension](https://peter88213.github.io/pywoo). There is also [yW2OO](https://peter88213.github.io/yW2OO), a standalone converter providing much more features. 
