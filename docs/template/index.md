@@ -1,9 +1,20 @@
 # ProofYw7 - Proofread yw7 scenes with ODT documents
 
-Export a yw7 project to an OpenDocument file with scene markers. 
-Write back the proofread scenes to the yw7 project file.
+Export a yw7 project to an OpenDocument file with scene markers. Write back the proofread scenes to the yw7 project file.
 
-![GoogleDocs](https://github.com/peter88213/novelyst/raw/main/docs/Screenshots/w_en_GoogleDocs01.png)
+![GoogleDocs](Screenshots/screen01.png)
+
+This is for editing yw7 manuscripts with a word processor that can read and write *.odt* documents, such as *GoogleDocs*.
+
+**Note:** If you are a *LibreOffice* or *OpenOffice* user, you may prefer the [yw-cnv extension](https://peter88213.github.io/yw-cnv),
+or the [pywoo extension](https://peter88213.github.io/pywoo). There is also [yW2OO](https://peter88213.github.io/yW2OO), a standalone converter providing much more features. 
+
+## Features
+
+- Launch the **proofyw7.pyw** Python script via drag/drop, the command line, or a batch file.
+- When applied to a yw7 file, an *.odt* document with visible chapter markers and navigable headings is created.
+- When applied to the edited *.odt* document, the yw7 file in the same folder is updated.
+- Text markup: Bold and italics are supported. Other highlighting such as underline and strikethrough are lost.
 
 ## Requirements
 

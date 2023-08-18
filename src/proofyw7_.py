@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ProofYw7 - Import and export yw7 scenes for proofing. 
 
 Proof reading file format: ODT (OASIS Open Document format) 
