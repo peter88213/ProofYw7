@@ -12,7 +12,7 @@ or the [pywoo extension](https://peter88213.github.io/pywoo). There is also [yW2
 ## Features
 
 - Launch the **proofyw7.pyw** Python script via drag/drop, the command line, or a batch file.
-- When applied to a yw7 file, an *.odt* document with visible chapter markers and navigable headings is created.
+- When applied to a yw7 file, an *.odt* document with visible scene markers and navigable headings is created.
 - When applied to the edited *.odt* document, the yw7 file in the same folder is updated.
 - Text markup: Bold and italics are supported. Other highlighting such as underline and strikethrough are lost.
 - When editing the document, you can create new chapters and scenes by splitting existing scenes.
