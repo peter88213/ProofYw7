@@ -24,9 +24,9 @@ or the [pywoo extension](https://peter88213.github.io/pywoo). There is also [yW2
 
 ## Download and install
 
-[Download the latest release (version 3.1.1)](https://raw.githubusercontent.com/peter88213/ProofYw7/main/dist/proofyw7_v3.1.1.zip)
+[Download the latest release (version 3.1.2)](https://raw.githubusercontent.com/peter88213/ProofYw7/main/dist/proofyw7_v3.1.2.zip)
 
-- Unzip the downloaded zipfile "proofyw7_v3.1.1.zip" within your user profile.
+- Unzip the downloaded zipfile "proofyw7_v3.1.2.zip" within your user profile.
 - Move into the unzipped folder and create a shortcut on the desktop.
 - Open "README.md" for usage instructions.
 

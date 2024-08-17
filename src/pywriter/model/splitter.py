@@ -7,6 +7,7 @@ Published under the MIT License (https://opensource.org/licenses/mit-license.php
 from pywriter.pywriter_globals import *
 from pywriter.model.chapter import Chapter
 from pywriter.model.scene import Scene
+from pywriter.model.id_generator import create_id
 
 
 class Splitter:
@@ -24,11 +25,11 @@ class Splitter:
         SCENE_SEPARATOR -- marker indicating the beginning of a new scene, splitting a scene.
         DESC_SEPARATOR -- marker separating title and description of a chapter or scene.
     """
-    PART_SEPARATOR: str = '#'
-    CHAPTER_SEPARATOR: str = '##'
-    SCENE_SEPARATOR: str = '###'
-    DESC_SEPARATOR: str = '|'
-    _CLIP_TITLE: int = 20
+    PART_SEPARATOR = '#'
+    CHAPTER_SEPARATOR = '##'
+    SCENE_SEPARATOR = '###'
+    DESC_SEPARATOR = '|'
+    _CLIP_TITLE = 20
     # Maximum length of newly generated scene titles.
 
     def split_scenes(self, file):
@@ -70,7 +71,7 @@ class Splitter:
                 title -- str: title of the scene to create.
                 desc -- str: description of the scene to create.
             """
-            WARNING: str = '(!)'
+            WARNING = '(!)'
 
             # Mark metadata of split scenes.
             newScene = Scene()
@@ -108,16 +109,6 @@ class Splitter:
             newScene.lastsMinutes = parent.lastsMinutes
             file.novel.scenes[sceneId] = newScene
 
-        # Get the maximum chapter ID and scene ID.
-        chIdMax = 0
-        scIdMax = 0
-        for chId in file.novel.srtChapters:
-            if int(chId) > chIdMax:
-                chIdMax = int(chId)
-        for scId in file.novel.scenes:
-            if int(scId) > scIdMax:
-                scIdMax = int(scId)
-
         # Process chapters and scenes.
         scenesSplit = False
         srtChapters = []
@@ -149,8 +140,7 @@ class Splitter:
                         file.novel.scenes[sceneId].sceneContent = '\n'.join(newLines)
                         newLines = []
                         sceneSplitCount += 1
-                        scIdMax += 1
-                        sceneId = str(scIdMax)
+                        sceneId = create_id(file.novel.scenes)
                         create_scene(sceneId, file.novel.scenes[scId], sceneSplitCount, title, desc)
                         srtScenes.append(sceneId)
                         scenesSplit = True
@@ -164,8 +154,7 @@ class Splitter:
                             inScene = False
                         file.novel.chapters[chapterId].srtScenes = srtScenes
                         srtScenes = []
-                        chIdMax += 1
-                        chapterId = str(chIdMax)
+                        chapterId = create_id(file.novel.chapters)
                         if not title:
                             title = _('New Chapter')
                         create_chapter(chapterId, title, desc, 0)
@@ -180,8 +169,7 @@ class Splitter:
                             inScene = False
                         file.novel.chapters[chapterId].srtScenes = srtScenes
                         srtScenes = []
-                        chIdMax += 1
-                        chapterId = str(chIdMax)
+                        chapterId = create_id(file.novel.chapters)
                         if not title:
                             title = _('New Part')
                         create_chapter(chapterId, title, desc, 1)
@@ -190,8 +178,7 @@ class Splitter:
                         # Append a scene without heading to a new chapter or part.
                         newLines.append(line)
                         sceneSplitCount += 1
-                        scIdMax += 1
-                        sceneId = str(scIdMax)
+                        sceneId = create_id(file.novel.scenes)
                         create_scene(sceneId, file.novel.scenes[scId], sceneSplitCount, '', '')
                         srtScenes.append(sceneId)
                         scenesSplit = True

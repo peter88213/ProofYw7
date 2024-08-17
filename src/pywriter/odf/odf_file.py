@@ -48,6 +48,9 @@ class OdfFile(FileExport):
         """Make sure to delete the temporary directory, in case write() has not been called."""
         self._tear_down()
 
+    def write_content_xml(self):
+        super().write()
+
     def write(self):
         """Write instance variables to the export file.
         
@@ -63,7 +66,7 @@ class OdfFile(FileExport):
         #--- Add "content.xml" to the temporary directory.
         self._originalPath = self._filePath
         self._filePath = f'{self._tempDir}/content.xml'
-        super().write()
+        self.write_content_xml()
         self._filePath = self._originalPath
 
         #--- Pack the contents of the temporary directory into the ODF file.
