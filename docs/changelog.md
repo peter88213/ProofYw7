@@ -5,6 +5,13 @@
 ## Changelog
 
 
+### Version 3.1.3
+
+- Refactor for future Python versions: No longer test truth value of
+xml.etree.ElementTree.Element.
+
+Based on PyWriter version 12.19.5
+
 ### Version 3.1.2
 
 - Refactor for future Python versions.
